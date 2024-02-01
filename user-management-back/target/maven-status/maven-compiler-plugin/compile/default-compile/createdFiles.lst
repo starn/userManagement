@@ -1,0 +1,4 @@
+fr/starn/usermanagement/service/UserService.class
+fr/starn/usermanagement/service/UserServiceImpl.class
+fr/starn/usermanagement/repository/UserRepository.class
+fr/starn/usermanagement/entity/User.class

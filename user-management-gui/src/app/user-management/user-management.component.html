@@ -1,0 +1,39 @@
+<div class="row">
+
+<div class="input-field col s6">
+  <i class="material-icons prefix">search</i>
+  <input id="search-input" [(ngModel)]="searchString" (keyup)="search()" type="text" class="validate" placeholder="Rechercher par prénom ou nom">
+</div>
+
+  <div class="input-field col s6" style="text-align:right;">
+    <button (click)="createUser()">+ Créer un utilisateur</button>
+  </div>
+</div>
+
+<table *ngIf="!showCreateUserPanel && !userToEdit" class="bordered striped centered responsive-table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Prenom</th>
+    <th>Nom</th>
+    <th>E-mail</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of filteredUsers()">
+      <td>{{user.id}}</td>
+      <td>{{user.firstname}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <a class="waves-effect waves-light btn-small" (click)="editUser(user)"><i class="material-icons left">edit</i></a>
+        <a class="waves-effect waves-light btn-small" (click)="deleteUser(user.id)"><i class="material-icons left">delete</i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-user-form *ngIf="showCreateUserPanel" [editionContext]="false" (onClosePopup)="onClosePopup($event);" title="Créer un utilisateur"></app-user-form>
+<app-user-form *ngIf="userToEdit" [user]="userToEdit" [editionContext]="true" (onClosePopup)="onClosePopup($event);" title="Editer un utilisateur"></app-user-form>

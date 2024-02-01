@@ -1,0 +1,27 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal open" style="display: block; height: 400px;">
+  <div class="modal-content">
+    <h4>{{title}}</h4>
+  </div>
+  <div class="modal-footer" *ngIf="user">
+    <form (ngSubmit)="save()" id="userForm">
+      <input required id="firstname" name="firstname" [(ngModel)]="user.firstname" type="text" class="validate" placeholder="Prénom"/>
+      <input required id="lastname" name="lastname" [(ngModel)]="user.lastname" type="text" class="validate" placeholder="Nom"/>
+      <input required id="email" name="email" [(ngModel)]="user.email" #email="ngModel" type="text" class="validate" placeholder="E-mail" [readOnly]="editionContext"/>
+      <p *ngIf="email.errors?.['required'] && email.dirty" class="error" style="color:red">
+        E-mail is required.
+      </p>
+      <p *ngIf="errorMessage" style="color:red">
+        {{errorMessage}}
+      </p>
+
+      <button (click)="close()">Annuler</button>
+      &nbsp;
+
+      <button *ngIf="editionContext" type="submit">Modifier</button>
+      <button *ngIf="!editionContext" type="submit">Créer</button>
+    </form>
+
+  </div>
+
+</div>
