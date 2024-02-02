@@ -1,5 +1,7 @@
 # userManagement
 
+![alt text](overview.png)
+
 The project is separated into 2 parts:
 - back in Java / Spring boot
 - front in Javascript / Angular
